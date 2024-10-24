@@ -161,6 +161,9 @@ class GeofenceForegroundServicePlugin : FlutterPlugin, MethodCallHandler, Activi
 
             "stopGeofencingService" -> {
                 try {
+                    if (!::serviceIntent.isInitialized) {
+                        serviceIntent = Intent(context, GeofenceForegroundService::class.java)
+                    }
                     context.stopService(serviceIntent)
                     result.success(true)
                 } catch (e: Exception) {
