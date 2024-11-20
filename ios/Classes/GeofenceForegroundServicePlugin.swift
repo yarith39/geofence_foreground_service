@@ -80,7 +80,16 @@ public class GeofenceForegroundServicePlugin: NSObject, FlutterPlugin {
 
 //            addGeoFences(zonesList, result)
         case "removeGeofence":
-            result("iOS " + UIDevice.current.systemVersion)
+            guard
+                let arguments = call.arguments as? [String: Any],
+                let zoneId = arguments[Constants.zoneId] as? String
+            else {
+                result(GFSError.invalidParameters.asFlutterError)
+                return
+            }
+            removeGeofence(zoneId: zoneId, result: result)
+        case "getMonitoredIds":
+            getMonitoredRegions(result: result)
         default:
             result(FlutterMethodNotImplemented)
         }
@@ -119,6 +128,25 @@ public class GeofenceForegroundServicePlugin: NSObject, FlutterPlugin {
         locationManager.startMonitoring(for: geofenceRegion)
         
         result(true)
+    }
+    
+    private func removeGeofence(zoneId: String, result: @escaping FlutterResult) {
+        for region in locationManager.monitoredRegions {
+            if (region.identifier == zoneId) {
+                locationManager.stopMonitoring(for: region)
+                result(true)
+                return
+            }
+        }
+        result(false)
+    }
+    
+    private func getMonitoredRegions(result: @escaping FlutterResult) {
+        var ret: [String] = []
+        for region in locationManager.monitoredRegions {
+            ret.append(region.identifier)
+        }
+        result(ret)
     }
 }
 

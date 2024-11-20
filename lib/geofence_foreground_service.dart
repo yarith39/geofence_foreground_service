@@ -101,4 +101,8 @@ class GeofenceForegroundService {
   Future<bool> removeAllGeoFences() {
     return GeofenceForegroundServicePlatform.instance.removeAllGeoFences();
   }
+
+  Future<List<String>> getMonitoredIds() {
+    return GeofenceForegroundServicePlatform.instance.getMonitoredIds();
+  }
 }

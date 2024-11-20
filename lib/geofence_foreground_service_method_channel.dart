@@ -204,4 +204,19 @@ class MethodChannelGeofenceForegroundService
 
     return areAllAreasRemoved;
   }
+
+  @override
+  Future<List<String>> getMonitoredIds() async {
+    try {
+      var result =
+          await foregroundChannel.invokeMethod<List>('getMonitoredIds') as List;
+      return result.cast<String>();
+    } catch (e) {
+      log(
+        e.toString(),
+        name: 'getMonitoredIds_failure',
+      );
+      return [];
+    }
+  }
 }

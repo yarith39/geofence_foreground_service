@@ -54,6 +54,11 @@ class MockGeofenceForegroundServicePlatform
       {required BackgroundTriggerHandler backgroundTriggerHandler}) {
     throw UnimplementedError();
   }
+
+  @override
+  Future<List<String>> getMonitoredIds() {
+    throw UnimplementedError();
+  }
 }
 
 void main() {
