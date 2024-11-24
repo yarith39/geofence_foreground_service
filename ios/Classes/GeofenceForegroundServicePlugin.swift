@@ -52,14 +52,14 @@ public class GeofenceForegroundServicePlugin: NSObject, FlutterPlugin {
             UserDefaultsHelper.storeIsDebug(isInDebug)
 
             locationManager.allowsBackgroundLocationUpdates = true
-            locationManager.pausesLocationUpdatesAutomatically = false
-            locationManager.startUpdatingLocation()
+//            locationManager.pausesLocationUpdatesAutomatically = false
+//            locationManager.startUpdatingLocation()
 
             result(true)
         case "stopGeofencingService":
             locationManager.allowsBackgroundLocationUpdates = false
-            locationManager.pausesLocationUpdatesAutomatically = true
-            locationManager.stopUpdatingLocation()
+//            locationManager.pausesLocationUpdatesAutomatically = true
+//            locationManager.stopUpdatingLocation()
 
             result(true)
         case "isForegroundServiceRunning":

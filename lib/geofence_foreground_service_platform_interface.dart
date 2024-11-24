@@ -73,6 +73,6 @@ abstract class GeofenceForegroundServicePlatform extends PlatformInterface {
   }
 
   Future<List<String>> getMonitoredIds() {
-    throw UnimplementedError('removeAllGeoFences() has not been implemented.');
+    throw UnimplementedError('getMonitoredIds() has not been implemented.');
   }
 }
